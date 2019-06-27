@@ -1,6 +1,8 @@
 package com.example.simonsay;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.RestrictionEntry;
 import android.graphics.Typeface;
@@ -9,11 +11,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -187,6 +191,10 @@ public class SimonGame extends AppCompatActivity implements View.OnClickListener
     public void GameOver()
     {
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(SimonGame.this);
+        View dialogview = getLayoutInflater().inflate(R.layout.game_over_dialog,null);
+        EditText usernameEd = dialogview.findViewById(R.id.inputOfTheUserName);
+        builder.setView(dialogview).show();
     }
 
 }
