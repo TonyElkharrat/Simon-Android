@@ -2,15 +2,21 @@ package com.example.simonsay;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.RestrictionEntry;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -29,21 +35,22 @@ public class SimonGame extends AppCompatActivity implements View.OnClickListener
     private ImageButton BlueButton;
     private TextView numbeOfRequestTv;
     private  RelativeLayout pannel;
-    private  ArrayList<View> ListOfChildren;
-    private int numberRequest=0;
     private int countOfTouch;
     private boolean gameover=false;
     private int m_SleepOfThread=0;
-    private ArrayList<eColors.Color> ArrayOfColor;
+    private boolean doubleBackpresssed=false;
+    private SharedPreferences sharedPreferences;
+    GameManager gameManager;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game4);
         Initialize();
-        GameManager.CreateLevel(ArrayOfColor);
+        gameManager.CreateLevel();
         m_SleepOfThread=800;
-        TurnOfComputer();
+        gameManager.TurnOfComputer(numbeOfRequestTv);
     }
 
     public void Initialize()
@@ -57,128 +64,38 @@ public class SimonGame extends AppCompatActivity implements View.OnClickListener
         BlueButton = findViewById(R.id.Blue);
         BlueButton.setOnClickListener(this);
         numbeOfRequestTv = findViewById(R.id.numberOfRequestTV);
-        ArrayOfColor= new ArrayList<eColors.Color>();
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/Pacifico.ttf");
         numbeOfRequestTv.setTypeface(typeface);
         pannel = findViewById(R.id.mainRelativeLayout);
-        ListOfChildren = new ArrayList<>();
-        ListOfChildren = getAllChildren(pannel);
+        ImageButton restartgame = findViewById(R.id.restartGame);
+        sharedPreferences = getSharedPreferences("details",MODE_PRIVATE);
+        gameManager = new GameManager(pannel);
 
     }
 
-    public void TurnOfComputer()
-    {
-        numberRequest++;
-        numbeOfRequestTv.setText(""+numberRequest);
 
-        new Thread()
-        {
-            int i=0;
-            @Override
-            public void run() {
-                super.run();
-                try{
-
-
-                        while(i<numberRequest)
-                        {
-                            Thread.sleep(100);
-                            ImageButton button = CheckButtonColor(ArrayOfColor.get(i),ListOfChildren);
-                            button.setPressed(true);
-                            Thread.sleep(m_SleepOfThread);
-                            button.setPressed(false);
-                            i++;
-                        }
-
-                        numbeOfRequestTv.setText("Your Turn");
-                        Thread.sleep(200);
-
-
-                }catch (InterruptedException e)
-                {
-
-                }
-            }
-        }.start();
-
-        }
-
-    public ImageButton CheckButtonColor (eColors.Color i_color, ArrayList<View> i_ListOfAllChildren)
-    {
-
-        for (int i = 0; i < i_ListOfAllChildren.size(); i++)
-        {
-            View childOfRelativeLayout = i_ListOfAllChildren.get(i);
-
-                    if (childOfRelativeLayout instanceof ImageButton)
-                    {
-                       if(CheckIdEqualToView(i_color,childOfRelativeLayout) )
-                       {
-                           return (ImageButton)childOfRelativeLayout;
-                       }
-                    }
-
-        }
-        return null;
-    }
-
-    private ArrayList<View> getAllChildren(View v) {
-
-        if (!(v instanceof ViewGroup)) {
-            ArrayList<View> viewArrayList = new ArrayList<View>();
-            viewArrayList.add(v);
-            return viewArrayList;
-        }
-
-        ArrayList<View> result = new ArrayList<View>();
-
-        ViewGroup vg = (ViewGroup) v;
-        for (int i = 0; i < vg.getChildCount(); i++) {
-
-            View child = vg.getChildAt(i);
-
-            ArrayList<View> viewArrayList = new ArrayList<View>();
-            viewArrayList.add(v);
-            viewArrayList.addAll(getAllChildren(child));
-
-            result.addAll(viewArrayList);
-        }
-        return result;
-    }
 
     @Override
     public void onClick(View v)
     {
+//        if(v.getResources().geti)
 
-        if(!CheckIdEqualToView(ArrayOfColor.get(countOfTouch),v))
+        if(!GameManager.CheckIdEqualToView(GameManager.Arr.get(countOfTouch),v))
         {
             gameover=true;
             GameOver();
         }
 
         countOfTouch++;
-        if(countOfTouch==numberRequest)
+        if(countOfTouch  == gameManager.numberRequest&&!gameover)
         {
             countOfTouch=0;
-            TurnOfComputer();
+            gameManager.TurnOfComputer(numbeOfRequestTv);
 
         }
     }
 
 
-    public boolean CheckIdEqualToView(eColors.Color i_color, View buttonColor)
-    {
-        boolean v_isEqual = false;
-        String id=buttonColor.getResources().getResourceName(buttonColor.getId());
-        String nameOfTheId = id.substring(id.indexOf("/")+1);
-        String s =i_color.toString();
-        if(s.equalsIgnoreCase(nameOfTheId))
-        {
-            v_isEqual = true;
-        }
-        return v_isEqual;
-
-    }
 
     public void PlayMusicOfTouch(String i_color)
     {
@@ -190,14 +107,91 @@ public class SimonGame extends AppCompatActivity implements View.OnClickListener
 
     public void GameOver()
     {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(SimonGame.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View dialogview = getLayoutInflater().inflate(R.layout.game_over_dialog,null);
-        EditText usernameEd = dialogview.findViewById(R.id.inputOfTheUserName);
+        Button saveButton = dialogview.findViewById(R.id.SaveButton);
+        final EditText nameOfTheUser = dialogview.findViewById(R.id.inputOfTheUserName);
+        final TextView recordOfTheUserTv = dialogview.findViewById(R.id.recordTextOfTheUser);
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
+        ImageButton restartGame = dialogview.findViewById(R.id.restartGame);
+        ImageButton homeButton = dialogview.findViewById(R.id.HomeButton);
+        ImageView trophyicone = dialogview.findViewById(R.id.TrophyId);
+        int temp =sharedPreferences.getInt("record_of_the_user",0);
+
+        if (sharedPreferences.getInt("record_of_the_user",0)< GameManager.numberRequest-1)
+        {
+            recordOfTheUserTv.setText("You Have A New Record!! :"+(GameManager.numberRequest-1));
+            editor.putInt("record_of_the_user",GameManager.numberRequest-1);
+            editor.commit();
+            saveButton.setVisibility(View.VISIBLE);
+            nameOfTheUser.setVisibility(View.VISIBLE);
+            trophyicone.setVisibility(View.VISIBLE);
+        }
+
+        else
+        {
+            recordOfTheUserTv.setText("Your score is :"+(GameManager.numberRequest-1));
+            saveButton.setVisibility(View.INVISIBLE);
+            nameOfTheUser.setVisibility(View.INVISIBLE);
+            trophyicone.setVisibility(View.INVISIBLE);
+        }
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                editor.putString("user_name",nameOfTheUser.getText().toString());
+                editor.putInt("record_of_the_user",GameManager.numberRequest-1);
+                editor.commit();
+                int temp = sharedPreferences.getInt("record_of_the_user",0);
+
+            }
+        });
+
+        restartGame.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+
+            }
+        });
+
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         builder.setView(dialogview).show();
     }
 
-}
+    @Override
+    public void onBackPressed()
+    {
+        if(doubleBackpresssed)
+        {
+            super.onBackPressed();
+        }
+        else
+            {
+                doubleBackpresssed=true;
+                Toast.makeText(SimonGame.this,"Click again to exit",Toast.LENGTH_SHORT).show();
+                new Handler().postDelayed(new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        doubleBackpresssed=false;
+                    }
+                },2000);
+        }          }
+
+    }
+
 
 
 

@@ -18,7 +18,7 @@
         android:textSize="20sp"
         android:textColor="#fff"
         android:layout_toEndOf="@id/restartGame"
-        android:text="YOU HAVE A NEW RECORD !!"
+        android:text="Your Score Is : "
         android:id="@+id/recordTextOfTheUser"
         />
     <ImageView
@@ -37,20 +37,23 @@
         <EditText
             android:id="@+id/inputOfTheUserName"
             android:layout_width="3dp"
+            android:textColorHint="#fff"
             android:layout_height="36dp"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:background="#fff"
-            android:hint="Your Name" />
+            android:background="@drawable/selector_of_save_button"
+            android:hint="  Your Name"
+            />
     <Button
         android:layout_width="10dp"
         android:layout_height="wrap_content"
         android:text="Save"
+        android:textColor="#fff"
         android:layout_toRightOf="@id/SaveButton"
         android:id="@+id/SaveButton"
         android:layout_weight="1"
         android:layout_margin="10dp"
-        android:background="#fff"
+        android:background="@drawable/selector_of_save_button"
         />
 
 </LinearLayout>
