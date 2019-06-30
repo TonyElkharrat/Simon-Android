@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textColor="#ffff"
+        android:text="Record Table"
+        android:gravity="center"
+        android:background="@color/colorAccent"
+        android:layout_margin="5dp"
+        android:typeface="serif"
+        android:elevation="20dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Best Score :"
+        android:textColor="@color/Blue"
+        android:gravity="center"
+        android:textSize="35sp"
+        android:layout_margin="35dp"
+        android:textStyle="bold"
+        android:typeface="serif"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="3">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/download"
+        android:layout_margin="35dp"
+        android:layout_weight="1"
+        />
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/ic_trophy_svgrepo_com"
+            android:layout_margin="35dp"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+
+    <Button
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Best Score Filter"
+        android:id="@+id/filterButtonId"
+        android:padding="5dp"
+        android:textColor="#ffff"
+        android:typeface="serif"
+        android:background="@drawable/shapegrey"
+        android:elevation="10dp"/>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="3"
+        android:layout_margin="3dp">
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="   Date"
+            android:textColor="#fff"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:textSize="20sp"
+            android:background="@drawable/shapered"
+            android:typeface="serif"
+            android:elevation="10dp"/>
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:text="   Level"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:textSize="20sp"
+            android:background="@drawable/shapeblue"
+            android:typeface="serif"
+            android:elevation="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#ffff"
+            android:text="   Score"
+            android:layout_margin="5dp"
+            android:background="@drawable/shapegreen"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:typeface="serif"
+            android:elevation="10dp"/>
+
+    </LinearLayout>
+
+<ListView
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/RecordTableId"
+    android:background="@drawable/gradient"
+    android:layout_margin="3dp">
+
+</ListView>
+</LinearLayout>

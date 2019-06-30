@@ -26,9 +26,21 @@ public class GameManager
     boolean gameover=false;
 
     static ArrayList<eColors.Color> Arr ;
-    static private  ArrayList<View> ListOfChildren;
-    static int m_SleepOfThread=1000;
-    static int numberRequest=0;
+
+    public ArrayList<View> getListOfChildren()
+    {
+        return ListOfChildren;
+    }
+
+    private  ArrayList<View> ListOfChildren;
+    private int m_SleepOfThread=1000;
+
+    public int getNumberRequest()
+    {
+        return numberRequest;
+    }
+
+    private int numberRequest=0;
 
     public GameManager(RelativeLayout i_pannel)
     {
@@ -67,7 +79,7 @@ public class GameManager
                     while(i<numberRequest)
                     {
                         Thread.sleep(100);
-                        ImageButton button = GameManager.CheckButtonColor(Arr.get(i),ListOfChildren);
+                        ImageButton button = CheckButtonColor(Arr.get(i),ListOfChildren);
                         button.setPressed(true);
                         Thread.sleep(m_SleepOfThread);
                         button.setPressed(false);
@@ -87,7 +99,7 @@ public class GameManager
 
     }
 
-    public static ImageButton CheckButtonColor (eColors.Color i_color, ArrayList<View> i_ListOfAllChildren)
+    public  ImageButton CheckButtonColor (eColors.Color i_color, ArrayList<View> i_ListOfAllChildren)
     {
 
         for (int i = 0; i < i_ListOfAllChildren.size(); i++)
@@ -130,7 +142,7 @@ public class GameManager
         return result;
     }
 
-    public static boolean CheckIdEqualToView(eColors.Color i_color, View buttonColor)
+    public  boolean CheckIdEqualToView(eColors.Color i_color, View buttonColor)
     {
         boolean v_isEqual = false;
         String id=buttonColor.getResources().getResourceName(buttonColor.getId());

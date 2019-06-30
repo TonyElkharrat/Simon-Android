@@ -29,7 +29,10 @@ import java.util.ArrayList;
 
 public class SimonGame extends AppCompatActivity implements View.OnClickListener
 {
-
+    private ImageButton greenButton;
+    private   ImageButton yelloButton;
+    private ImageButton RedButton;
+    private ImageButton BlueButton;
     private TextView numbeOfRequestTv;
     private  RelativeLayout pannel;
     private int countOfTouch;
@@ -37,7 +40,7 @@ public class SimonGame extends AppCompatActivity implements View.OnClickListener
     private int m_SleepOfThread=0;
     private boolean doubleBackpresssed=false;
     private SharedPreferences sharedPreferences;
-    GameManager gameManager;
+    private GameManager gameManager;
 
 
     @Override
@@ -52,7 +55,7 @@ public class SimonGame extends AppCompatActivity implements View.OnClickListener
 
     public void Initialize()
     {
-        
+
         numbeOfRequestTv = findViewById(R.id.numberOfRequestTV);
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/Pacifico.ttf");
         numbeOfRequestTv.setTypeface(typeface);
@@ -60,24 +63,36 @@ public class SimonGame extends AppCompatActivity implements View.OnClickListener
         ImageButton restartgame = findViewById(R.id.restartGame);
         sharedPreferences = getSharedPreferences("details",MODE_PRIVATE);
         gameManager = new GameManager(pannel);
+        SetonClickListener();
 
     }
 
 
+
+    public void SetonClickListener()
+    {
+        for (View viewInTheLayout : gameManager.getListOfChildren())
+        {
+            if(viewInTheLayout instanceof ImageButton)
+            {
+                viewInTheLayout.setOnClickListener(this);
+            }
+        }
+    }
 
     @Override
     public void onClick(View v)
     {
 //        if(v.getResources().geti)
 
-        if(!GameManager.CheckIdEqualToView(GameManager.Arr.get(countOfTouch),v))
+        if(!gameManager.CheckIdEqualToView(GameManager.Arr.get(countOfTouch),v))
         {
             gameover=true;
             GameOver();
         }
 
         countOfTouch++;
-        if(countOfTouch  == gameManager.numberRequest&&!gameover)
+        if(countOfTouch  == gameManager.getNumberRequest()&&!gameover)
         {
             countOfTouch=0;
             gameManager.TurnOfComputer(numbeOfRequestTv);
@@ -108,10 +123,10 @@ public class SimonGame extends AppCompatActivity implements View.OnClickListener
         ImageView trophyicone = dialogview.findViewById(R.id.TrophyId);
         int temp =sharedPreferences.getInt("record_of_the_user",0);
 
-        if (sharedPreferences.getInt("record_of_the_user",0)< GameManager.numberRequest-1)
+        if (sharedPreferences.getInt("record_of_the_user",0)< gameManager.getNumberRequest()-1)
         {
-            recordOfTheUserTv.setText("You Have A New Record!! :"+(GameManager.numberRequest-1));
-            editor.putInt("record_of_the_user",GameManager.numberRequest-1);
+            recordOfTheUserTv.setText("You Have A New Record!! :"+(gameManager.getNumberRequest()-1));
+            editor.putInt("record_of_the_user",gameManager.getNumberRequest()-1);
             editor.commit();
             saveButton.setVisibility(View.VISIBLE);
             nameOfTheUser.setVisibility(View.VISIBLE);
@@ -120,7 +135,7 @@ public class SimonGame extends AppCompatActivity implements View.OnClickListener
 
         else
         {
-            recordOfTheUserTv.setText("Your score is :"+(GameManager.numberRequest-1));
+            recordOfTheUserTv.setText("Your score is :"+(gameManager.getNumberRequest()-1));
             saveButton.setVisibility(View.INVISIBLE);
             nameOfTheUser.setVisibility(View.INVISIBLE);
             trophyicone.setVisibility(View.INVISIBLE);
@@ -131,7 +146,7 @@ public class SimonGame extends AppCompatActivity implements View.OnClickListener
             public void onClick(View v) {
 
                 editor.putString("user_name",nameOfTheUser.getText().toString());
-                editor.putInt("record_of_the_user",GameManager.numberRequest-1);
+                editor.putInt("record_of_the_user",gameManager.getNumberRequest()-1);
                 editor.commit();
                 int temp = sharedPreferences.getInt("record_of_the_user",0);
 
