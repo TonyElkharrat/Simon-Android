@@ -29,10 +29,7 @@ import java.util.ArrayList;
 
 public class SimonGame extends AppCompatActivity implements View.OnClickListener
 {
-    private ImageButton greenButton;
-    private   ImageButton yelloButton;
-    private ImageButton RedButton;
-    private ImageButton BlueButton;
+
     private TextView numbeOfRequestTv;
     private  RelativeLayout pannel;
     private int countOfTouch;
@@ -55,14 +52,7 @@ public class SimonGame extends AppCompatActivity implements View.OnClickListener
 
     public void Initialize()
     {
-        greenButton = findViewById(R.id.Green);
-        greenButton.setOnClickListener(this);
-        yelloButton = findViewById(R.id.Yellow);
-        yelloButton.setOnClickListener(this);
-        RedButton = findViewById(R.id.Red);
-        RedButton.setOnClickListener(this);
-        BlueButton = findViewById(R.id.Blue);
-        BlueButton.setOnClickListener(this);
+        
         numbeOfRequestTv = findViewById(R.id.numberOfRequestTV);
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/Pacifico.ttf");
         numbeOfRequestTv.setTypeface(typeface);
