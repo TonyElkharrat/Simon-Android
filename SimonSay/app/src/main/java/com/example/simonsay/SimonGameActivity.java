@@ -1,6 +1,7 @@
 package com.example.simonsay;
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -19,10 +20,7 @@ import android.widget.Toast;
 
 public class SimonGameActivity extends AppCompatActivity implements View.OnClickListener
 {
-    private ImageButton greenButton;
-    private   ImageButton yelloButton;
-    private ImageButton RedButton;
-    private ImageButton BlueButton;
+
     private TextView numbeOfRequestTv;
     private  RelativeLayout pannel;
     private int countOfTouch;
@@ -33,10 +31,21 @@ public class SimonGameActivity extends AppCompatActivity implements View.OnClick
     private GameManager gameManager;
 
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.game4);
+
+
+//        String level = getIntent().getStringArrayExtra("level")[0];
+//        if(level=="Commando")
+//        {
+            setContentView(R.layout.game4);
+//        }
+//        else
+//        {
+//
+//        }
         Initialize();
         gameManager.CreateLevel();
         m_SleepOfThread=800;
@@ -57,8 +66,6 @@ public class SimonGameActivity extends AppCompatActivity implements View.OnClick
 
     }
 
-
-
     public void SetonClickListener()
     {
         for (View viewInTheLayout : gameManager.getListOfChildren())
@@ -73,8 +80,6 @@ public class SimonGameActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v)
     {
-//        if(v.getResources().geti)
-
         if(!gameManager.CheckIdEqualToView(GameManager.Arr.get(countOfTouch),v))
         {
             gameover=true;
@@ -112,6 +117,8 @@ public class SimonGameActivity extends AppCompatActivity implements View.OnClick
         ImageButton homeButton = dialogview.findViewById(R.id.HomeButton);
         ImageView trophyicone = dialogview.findViewById(R.id.TrophyId);
         int temp =sharedPreferences.getInt("record_of_the_user",0);
+        gameManager.AddScore(new ContentValues(),eLevel.Level.Easy,Integer.parseInt(numbeOfRequestTv.getText().toString())-1);
+
 
         if (sharedPreferences.getInt("record_of_the_user",0)< gameManager.getNumberRequest()-1)
         {
@@ -131,12 +138,15 @@ public class SimonGameActivity extends AppCompatActivity implements View.OnClick
             trophyicone.setVisibility(View.INVISIBLE);
         }
 
-        saveButton.setOnClickListener(new View.OnClickListener() {
+        saveButton.setOnClickListener(new View.OnClickListener()
+        {
+
             @Override
             public void onClick(View v) {
 
                 editor.putString("user_name",nameOfTheUser.getText().toString());
                 editor.putInt("record_of_the_user",gameManager.getNumberRequest()-1);
+
                 editor.commit();
                 int temp = sharedPreferences.getInt("record_of_the_user",0);
 

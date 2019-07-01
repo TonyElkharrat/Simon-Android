@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainRelativeLayout">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="2"
+    android:orientation="vertical"
+    android:background="#000">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:weightSum="3"
+    android:padding="5dp"
+    android:layout_margin="1dp">
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/backgroundselectorgreen"
+        android:layout_weight="1"
+        android:id="@+id/Green"
+        android:layout_margin="5dp"
+        />
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/shapeviolet"
+        android:layout_weight="1"
+        android:id="@+id/Violet"
+        android:layout_margin="5dp"
+        />
+
+    <ImageButton
+        android:id="@+id/Red"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/backgroundselectorred" />
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_margin="1dp"
+        android:weightSum="3"
+        android:padding="1dp">
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/backgroundselectoryellow"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:id="@+id/Yellow"/>
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/backgroundselectorblue"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:id="@+id/Blue"/>
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shapegrey"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:id="@+id/Pink"/>
+
+
+</LinearLayout>
+</LinearLayout>
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/circle"
+        android:layout_centerInParent="true"
+        android:id="@+id/numberOfRequest"/>
+    <TextView
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:text="q"
+        android:typeface="monospace"
+        android:gravity="center"
+        android:textSize="40sp"
+        android:background="@drawable/circle"
+        android:layout_centerInParent="true"
+        android:id="@+id/numberOfRequestTV"/>
+    </RelativeLayout>

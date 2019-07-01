@@ -67,16 +67,7 @@ public class TableScoreActivity extends AppCompatActivity
     ShowTable();
     }
 
-    public void AddScore ( ContentValues i_contentValues,eLevel.Level i_Level ,int i_Score) {
-        String todayString = MakeDate();
 
-        i_contentValues.put("Date", todayString);
-        i_contentValues.put("Score", i_Score);
-        i_contentValues.put("Level", i_Level.toString());
-        database.insert(tableScore, null, i_contentValues);
-
-
-    }
 
 public void ShowTable()
 {
@@ -86,12 +77,6 @@ public void ShowTable()
 
 }
 
-public String MakeDate()
-{
-    Date todayDate = Calendar.getInstance().getTime();
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-    return  formatter.format(todayDate);
-}
 
 public void MakeTable(Cursor cursor, ArrayAdapter<String> i_Adapater,String i_Score )
 {

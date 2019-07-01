@@ -8,8 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,10 +23,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         SharedPreferences sharedPreferences ;
+
         sharedPreferences = getSharedPreferences("details",MODE_PRIVATE);
-//        Intent Simon4 = new Intent(MainActivity.this, SimonGameActivity.class);
-//        startActivity(Simon4);
-        Intent tableScoreActivity = new Intent(MainActivity.this, TableScoreActivity.class);
-        startActivity(tableScoreActivity);
+        ArrayList<String> arr = new ArrayList<>();
+        arr.add(eLevel.Level.Commando.toString());
+        arr.add(eLevel.Level.Commando.toString());
+
+        Intent SimonIntent = new Intent(MainActivity.this, SimonGameActivity.class);
+//        SimonIntent.putExtra("level",arr);
+        startActivity(SimonIntent);
+
+//        Intent tableScoreActivity = new Intent(MainActivity.this, TableScoreActivity.class);
+//        startActivity(tableScoreActivity);
     }
 }

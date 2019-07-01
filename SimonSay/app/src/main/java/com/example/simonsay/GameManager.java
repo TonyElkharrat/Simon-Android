@@ -1,9 +1,12 @@
 package com.example.simonsay;
 
+
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
@@ -19,11 +22,17 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
-public class GameManager
+public class GameManager extends AppCompatActivity
 {
     boolean gameover=false;
+    final String tableScore = "Record_Score";
+    final String CREATE_TABLE_CMD=" CREATE TABLE IF NOT EXISTS "+tableScore+ "(id INTEGER PRIMARY KEY AUTOINCREMENT, Date TEXT, Level TEXT, Score TEXT);";
+    SQLiteDatabase database;
 
     static ArrayList<eColors.Color> Arr ;
 
@@ -142,6 +151,19 @@ public class GameManager
         return result;
     }
 
+    public  void AddScore (ContentValues i_contentValues, eLevel.Level i_Level , int i_Score)
+    {
+        String todayString = MakeDate();
+
+        database  = openOrCreateDatabase("dataOfScore",MODE_PRIVATE,null);
+        database.execSQL(CREATE_TABLE_CMD);
+
+        i_contentValues.put("Date", todayString);
+        i_contentValues.put("Score", i_Score);
+        i_contentValues.put("Level", i_Level.toString());
+        database.insert(tableScore, null, i_contentValues);
+    }
+
     public  boolean CheckIdEqualToView(eColors.Color i_color, View buttonColor)
     {
         boolean v_isEqual = false;
@@ -154,6 +176,12 @@ public class GameManager
         }
         return v_isEqual;
 
+    }
+    public String MakeDate()
+    {
+        Date todayDate = Calendar.getInstance().getTime();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        return  formatter.format(todayDate);
     }
 
 }
