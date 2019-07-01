@@ -1,33 +1,23 @@
 package com.example.simonsay;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.RestrictionEntry;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
-public class SimonGame extends AppCompatActivity implements View.OnClickListener
+public class SimonGameActivity extends AppCompatActivity implements View.OnClickListener
 {
     private ImageButton greenButton;
     private   ImageButton yelloButton;
@@ -184,7 +174,7 @@ public class SimonGame extends AppCompatActivity implements View.OnClickListener
         else
             {
                 doubleBackpresssed=true;
-                Toast.makeText(SimonGame.this,"Click again to exit",Toast.LENGTH_SHORT).show();
+                Toast.makeText(SimonGameActivity.this,"Click again to exit",Toast.LENGTH_SHORT).show();
                 new Handler().postDelayed(new Runnable()
                 {
                     @Override

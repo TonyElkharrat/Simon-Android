@@ -21,57 +21,105 @@ public class TableScoreActivity extends AppCompatActivity
     final String tableScore = "Record_Score";
     final String CREATE_TABLE_CMD=" CREATE TABLE IF NOT EXISTS "+tableScore+ "(id INTEGER PRIMARY KEY AUTOINCREMENT, Date TEXT, Level TEXT, Score TEXT);";
     SQLiteDatabase database;
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.record_table);
-        ListView tableScore = findViewById(R.id.RecordTableId);
+
+        final ListView tableScore = findViewById(R.id.RecordTableId);
+
         database = openOrCreateDatabase("dataOfScore",MODE_PRIVATE,null);
         database.execSQL(CREATE_TABLE_CMD);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
+
+        adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
         tableScore.setAdapter(adapter);
-        ContentValues contentValues = new ContentValues();
-        CreateScore(adapter,contentValues,eLevel.Level.Commando,4);
+
+
         Button buttonFilter = findViewById(R.id.filterButtonId);
-        buttonFilter.setOnClickListener(new View.OnClickListener() {
+        Button allScoreButton = findViewById(R.id.AllScoreButtonID);
+
+        buttonFilter.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v)
             {
-                AlertDialog.Builder builder =  new AlertDialog.Builder(TableScoreActivity.this);
-                builder.setTitle("Choose a Filter").setItems(new String[]{eLevel.Level.Easy.toString(),eLevel.Level.Medium.toString(),eLevel.Level.Commando.toString()},
-                        new FilterLevelListener(TableScoreActivity.this)).setPositiveButton("Save", new FilterLevelListener(TableScoreActivity.this)).show();
-            }
+
+                final ArrayAdapter<String> adapterOfBestScore = new ArrayAdapter<>(TableScoreActivity.this,android.R.layout.simple_list_item_1);
+                    Cursor cursor = database.query("Record_Score", new String[] {"Date", "Level", "Score", "max(Score) as max_Score"},null, null, "Level", null, null);
+
+                    MakeTable(cursor,adapterOfBestScore,"max_Score");
+                    adapterOfBestScore.notifyDataSetChanged();
+                    tableScore.setAdapter(adapterOfBestScore);
+                }
+
+
         });
 
+    allScoreButton.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        tableScore.setAdapter(adapter);
+    }
+});
+    ShowTable();
+    }
+
+    public void AddScore ( ContentValues i_contentValues,eLevel.Level i_Level ,int i_Score) {
+        String todayString = MakeDate();
+
+        i_contentValues.put("Date", todayString);
+        i_contentValues.put("Score", i_Score);
+        i_contentValues.put("Level", i_Level.toString());
+        database.insert(tableScore, null, i_contentValues);
+
 
     }
 
-    public void CreateScore ( ArrayAdapter<String> adapter,ContentValues i_contentValues,eLevel.Level i_Level ,int i_Score)
+public void ShowTable()
+{
+    Cursor cursor =database.query(tableScore,null,null,null,null,null,null);
+    MakeTable(cursor,adapter,"Score");
+    adapter.notifyDataSetChanged();
+
+}
+
+public String MakeDate()
+{
+    Date todayDate = Calendar.getInstance().getTime();
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    return  formatter.format(todayDate);
+}
+
+public void MakeTable(Cursor cursor, ArrayAdapter<String> i_Adapater,String i_Score )
+{
+    int scoreindex = cursor.getColumnIndex(i_Score);
+    int levelindex = cursor.getColumnIndex("Level");
+    int dateindex = cursor.getColumnIndex("Date");
+    String addSpace;
+    while(cursor.moveToNext())
     {
-        Date todayDate = Calendar.getInstance().getTime();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        String todayString = formatter.format(todayDate);
 
-        i_contentValues.put("Date",todayString);
-        i_contentValues.put("Score",i_Score);
-        i_contentValues.put("Level",i_Level.toString());
+        String row = cursor.getString(dateindex)+"               "+ cursor.getString(levelindex) ;
 
-        database.insert(tableScore,null,i_contentValues);
-
-        Cursor cursor =database.query(tableScore,null,null,null,null,null,null);
-        int dateIndex = cursor.getColumnIndex("Date");
-        int scoreIndex = cursor.getColumnIndex("Score");
-        int levelIndex = cursor.getColumnIndex("Level");
-
-        while(cursor.moveToNext())
+        if(row.contains("Easy"))
         {
-            String date = cursor.getString(dateIndex) + "         " + cursor.getString(levelIndex)+"                "+ cursor.getInt(scoreIndex);
-            adapter.add(date);
+            row= row+"                       ";
         }
-        adapter.notifyDataSetChanged();
+        else  if(row.contains("Medium"))
+        {
+            row= row+"                 ";
+        }
+        else
+        {
+            row= row +"           ";
+        }
+       row = row + cursor.getInt(scoreindex);
+        i_Adapater.add(row);
 
     }
-
+    cursor.close();
+}
 }

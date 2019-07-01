@@ -52,20 +52,37 @@
             android:layout_weight="1"
             />
     </LinearLayout>
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="8">
     <Button
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:text="Best Score Filter"
+        android:layout_weight="1"
         android:id="@+id/filterButtonId"
         android:padding="5dp"
         android:textColor="#ffff"
         android:typeface="serif"
         android:background="@drawable/shapegrey"
         android:elevation="10dp"/>
+    <Button
 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="All Scores"
+        android:layout_weight="1"
+        android:id="@+id/AllScoreButtonID"
+        android:padding="5dp"
+        android:textColor="#ffff"
+        android:typeface="serif"
+        android:background="@drawable/shapeviolet"
+        android:elevation="10dp"/>
+</LinearLayout>
     <LinearLayout
 
         android:layout_width="match_parent"

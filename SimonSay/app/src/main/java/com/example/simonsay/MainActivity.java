@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         SharedPreferences sharedPreferences ;
         sharedPreferences = getSharedPreferences("details",MODE_PRIVATE);
-//        Intent Simon4 = new Intent(MainActivity.this, SimonGame.class);
+//        Intent Simon4 = new Intent(MainActivity.this, SimonGameActivity.class);
 //        startActivity(Simon4);
         Intent tableScoreActivity = new Intent(MainActivity.this, TableScoreActivity.class);
         startActivity(tableScoreActivity);
