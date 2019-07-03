@@ -1,20 +1,14 @@
 package com.example.simonsay;
 
-import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-
-import java.util.Date;
 
 public class TableScoreActivity extends AppCompatActivity
 {
@@ -65,18 +59,15 @@ public class TableScoreActivity extends AppCompatActivity
     }
 });
     ShowTable();
+
     }
-
-
 
 public void ShowTable()
 {
     Cursor cursor =database.query(tableScore,null,null,null,null,null,null);
     MakeTable(cursor,adapter,"Score");
     adapter.notifyDataSetChanged();
-
 }
-
 
 public void MakeTable(Cursor cursor, ArrayAdapter<String> i_Adapater,String i_Score )
 {

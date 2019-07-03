@@ -1,18 +1,10 @@
 package com.example.simonsay;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.support.v7.app.AppCompatActivity;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,13 +18,19 @@ public class MainActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("details",MODE_PRIVATE);
         ArrayList<String> arr = new ArrayList<>();
-        arr.add(eLevel.Level.Commando.toString());
-        arr.add(eLevel.Level.Commando.toString());
+        arr.add(eLevel.Level.Medium.toString());
+        arr.add("800");
 
         Intent SimonIntent = new Intent(MainActivity.this, SimonGameActivity.class);
-//        SimonIntent.putExtra("level",arr);
+        SimonIntent.putExtra("level",arr);
         startActivity(SimonIntent);
+//        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MainActivity.this);
+//        View layoutView = getLayoutInflater().inflate(R.layout.game_over_dialog, null);
+//        dialogBuilder.setView(layoutView);
+//        AlertDialog  alertDialog = dialogBuilder.create();
+//        alertDialog.getWindow().getAttributes().windowAnimations = R.style.DialogSlide;
 
+//        alertDialog.show();
 //        Intent tableScoreActivity = new Intent(MainActivity.this, TableScoreActivity.class);
 //        startActivity(tableScoreActivity);
     }

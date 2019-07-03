@@ -136,7 +136,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/RecordTableId"
-    android:background="@drawable/gradient"
+    android:background="@drawable/gradientt"
     android:layout_margin="3dp">
 
 </ListView>

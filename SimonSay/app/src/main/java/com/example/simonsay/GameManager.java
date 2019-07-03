@@ -1,24 +1,14 @@
 package com.example.simonsay;
 
 
-import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -29,20 +19,23 @@ import java.util.Date;
 
 public class GameManager extends AppCompatActivity
 {
-    boolean gameover=false;
-    final String tableScore = "Record_Score";
-    final String CREATE_TABLE_CMD=" CREATE TABLE IF NOT EXISTS "+tableScore+ "(id INTEGER PRIMARY KEY AUTOINCREMENT, Date TEXT, Level TEXT, Score TEXT);";
-    SQLiteDatabase database;
+    final String m_tableScore = "Record_Score";
+    final String CREATE_TABLE_CMD=" CREATE TABLE IF NOT EXISTS "+m_tableScore+ "(id INTEGER PRIMARY KEY AUTOINCREMENT, Date TEXT, Level TEXT, Score TEXT);";
+    private SQLiteDatabase database;
 
-    static ArrayList<eColors.Color> Arr ;
+    public ArrayList<eColors.Color> getArrayOfColors() {
+        return m_ArrayOfColors;
+    }
 
+    private ArrayList<eColors.Color> m_ArrayOfColors ;
     public ArrayList<View> getListOfChildren()
     {
         return ListOfChildren;
     }
-
     private  ArrayList<View> ListOfChildren;
-    private int m_SleepOfThread=1000;
+    private int m_SleepOfThread=500;
+    private MusicService m_musicService;
+
 
     public int getNumberRequest()
     {
@@ -51,30 +44,37 @@ public class GameManager extends AppCompatActivity
 
     private int numberRequest=0;
 
-    public GameManager(RelativeLayout i_pannel)
+    public GameManager(RelativeLayout i_pannel, MusicService i_MusicService)
     {
-        Arr= new ArrayList<eColors.Color>();
+        m_ArrayOfColors= new ArrayList<eColors.Color>();
         numberRequest=0;
         ListOfChildren= new ArrayList<View>();
         ListOfChildren = getAllChildren(i_pannel);
+        m_musicService = i_MusicService;
     }
 
     public  void CreateLevel()
     {
-        Arr.add(eColors.Color.Blue);
-        Arr.add(eColors.Color.Red);
-        Arr.add(eColors.Color.Blue);
-        Arr.add(eColors.Color.Green);
-        Arr.add(eColors.Color.Green);
-        Arr.add(eColors.Color.Red);
-        Arr.add(eColors.Color.Blue);
-        Arr.add(eColors.Color.Yellow);
-        Arr.add(eColors.Color.Green);
+        m_ArrayOfColors.add(eColors.Color.Blue);
+        m_ArrayOfColors.add(eColors.Color.Red);
+        m_ArrayOfColors.add(eColors.Color.Blue);
+        m_ArrayOfColors.add(eColors.Color.Green);
+        m_ArrayOfColors.add(eColors.Color.Green);
+        m_ArrayOfColors.add(eColors.Color.Red);
+        m_ArrayOfColors.add(eColors.Color.Blue);
+        m_ArrayOfColors.add(eColors.Color.Yellow);
+        m_ArrayOfColors.add(eColors.Color.Green);
+        m_ArrayOfColors.add(eColors.Color.Blue);
+        m_ArrayOfColors.add(eColors.Color.Green);
+
+
     }
+
     public void TurnOfComputer( final TextView numbeOfRequestTv)
     {
         numberRequest++;
         numbeOfRequestTv.setText(""+numberRequest);
+
 
         new Thread()
         {
@@ -88,7 +88,8 @@ public class GameManager extends AppCompatActivity
                     while(i<numberRequest)
                     {
                         Thread.sleep(100);
-                        ImageButton button = CheckButtonColor(Arr.get(i),ListOfChildren);
+                        m_musicService.PlayMusicOfTouch(m_ArrayOfColors.get(i).toString());
+                        ImageButton button = CheckButtonColor(m_ArrayOfColors.get(i),ListOfChildren);
                         button.setPressed(true);
                         Thread.sleep(m_SleepOfThread);
                         button.setPressed(false);
@@ -161,7 +162,7 @@ public class GameManager extends AppCompatActivity
         i_contentValues.put("Date", todayString);
         i_contentValues.put("Score", i_Score);
         i_contentValues.put("Level", i_Level.toString());
-        database.insert(tableScore, null, i_contentValues);
+        database.insert(m_tableScore, null, i_contentValues);
     }
 
     public  boolean CheckIdEqualToView(eColors.Color i_color, View buttonColor)
@@ -173,10 +174,12 @@ public class GameManager extends AppCompatActivity
         if(s.equalsIgnoreCase(nameOfTheId))
         {
             v_isEqual = true;
+
         }
         return v_isEqual;
 
     }
+
     public String MakeDate()
     {
         Date todayDate = Calendar.getInstance().getTime();
