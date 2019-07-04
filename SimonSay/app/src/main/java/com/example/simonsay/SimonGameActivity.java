@@ -1,5 +1,5 @@
 package com.example.simonsay;
-
+import android.os.Vibrator;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -74,8 +74,6 @@ public class SimonGameActivity extends AppCompatActivity implements View.OnClick
         m_musicService = new MusicService(SimonGameActivity.this);
         m_gameManager = new GameManager(m_pannel,m_musicService);
         SetonClickListener();
-
-
     }
 
     public void SetonClickListener()
@@ -96,6 +94,8 @@ public class SimonGameActivity extends AppCompatActivity implements View.OnClick
 
         if(!m_gameManager.CheckIdEqualToView(m_gameManager.getArrayOfColors().get(m_countOfTouch),v))
         {
+            Vibrator vi = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            vi.vibrate(1300);
             v_gameover=true;
             GameOver();
         }
@@ -108,8 +108,6 @@ public class SimonGameActivity extends AppCompatActivity implements View.OnClick
             m_gameManager.TurnOfComputer(m_numbeOfRequestTv);
         }
     }
-
-
 
     public void GameOver()
     {
@@ -147,7 +145,7 @@ public class SimonGameActivity extends AppCompatActivity implements View.OnClick
         ImageView trophyicone = dialogview.findViewById(R.id.TrophyId);
         ImageView ShareButton = dialogview.findViewById(R.id.ShareGame);
         int temp =m_sharedPreferences.getInt("record_of_the_user",0);
-//        gameManager.AddScore(new ContentValues(),eLevel.Level.Easy,Integer.parseInt(numbeOfRequestTv.getText().toString())-a);
+//        gameManager.AddScore(new ContentValues(),eLevel.Level.Easy,Integer.parseInt(numbeOfRequestTv.getText().toString())-a); ADD A SCORE IN THE DATABASE
 
         if (m_sharedPreferences.getInt("record_of_the_user",0)< m_gameManager.getNumberRequest()-1)
         {
@@ -236,9 +234,6 @@ public class SimonGameActivity extends AppCompatActivity implements View.OnClick
                     }
                 },2000);
         }          }
-
-
-
 }
 
 

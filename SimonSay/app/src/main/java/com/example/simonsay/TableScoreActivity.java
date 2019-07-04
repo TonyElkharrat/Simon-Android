@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 public class TableScoreActivity extends AppCompatActivity
@@ -30,6 +31,10 @@ public class TableScoreActivity extends AppCompatActivity
 
         adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
         tableScore.setAdapter(adapter);
+
+        ImageView trophy = findViewById(R.id.TrophyId);
+        ImageView SimonImage = findViewById(R.id.imageOfSimon);
+
 
 
         Button buttonFilter = findViewById(R.id.filterButtonId);

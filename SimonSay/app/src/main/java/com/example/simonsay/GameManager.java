@@ -35,7 +35,7 @@ public class GameManager extends AppCompatActivity
     private  ArrayList<View> ListOfChildren;
     private int m_SleepOfThread=500;
     private MusicService m_musicService;
-
+    private  boolean v_isClickable=false;
 
     public int getNumberRequest()
     {
@@ -83,21 +83,27 @@ public class GameManager extends AppCompatActivity
             public void run() {
                 super.run();
                 try{
+                    v_isClickable = false;
+                    DesactivateOtherTouchWhenComputerArePlaying();
 
-
+                    Thread.sleep(600);
                     while(i<numberRequest)
                     {
-                        Thread.sleep(100);
+
+
                         m_musicService.PlayMusicOfTouch(m_ArrayOfColors.get(i).toString());
                         ImageButton button = CheckButtonColor(m_ArrayOfColors.get(i),ListOfChildren);
                         button.setPressed(true);
-                        Thread.sleep(m_SleepOfThread);
+                        Thread.sleep(300);
                         button.setPressed(false);
                         i++;
                     }
 
                     numbeOfRequestTv.setText("Your Turn");
+                    v_isClickable = true;
+                    DesactivateOtherTouchWhenComputerArePlaying();
                     Thread.sleep(200);
+
 
 
                 }catch (InterruptedException e)
@@ -185,6 +191,18 @@ public class GameManager extends AppCompatActivity
         Date todayDate = Calendar.getInstance().getTime();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         return  formatter.format(todayDate);
+    }
+
+    public void DesactivateOtherTouchWhenComputerArePlaying()
+    {
+        for (View v: ListOfChildren)
+        {
+            if( v instanceof ImageButton)
+            {
+                v.setClickable(v_isClickable);
+            }
+
+        }
     }
 
 }
