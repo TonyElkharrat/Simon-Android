@@ -9,7 +9,7 @@
             android:width="2dp"
            />
 
-        <solid android:color="@color/Pinkdark">
+        <solid android:color="@color/colorPrimary">
 
         </solid>
 

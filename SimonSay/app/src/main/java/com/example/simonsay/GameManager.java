@@ -4,7 +4,6 @@ package com.example.simonsay;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +15,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 public class GameManager extends AppCompatActivity
 {
     final String m_tableScore = "Record_Score";
     final String CREATE_TABLE_CMD=" CREATE TABLE IF NOT EXISTS "+m_tableScore+ "(id INTEGER PRIMARY KEY AUTOINCREMENT, Date TEXT, Level TEXT, Score TEXT);";
-    private SQLiteDatabase database;
+    private SQLiteDatabase database ;
 
     public ArrayList<eColors.Color> getArrayOfColors() {
         return m_ArrayOfColors;
@@ -36,6 +36,7 @@ public class GameManager extends AppCompatActivity
     private int m_SleepOfThread=500;
     private MusicService m_musicService;
     private  boolean v_isClickable=false;
+    Random m_random = new Random();
 
     public int getNumberRequest()
     {
@@ -53,19 +54,43 @@ public class GameManager extends AppCompatActivity
         m_musicService = i_MusicService;
     }
 
-    public  void CreateLevel()
+    public  void CreateLevel(/*eLevel.Level i_Level*/)
     {
         m_ArrayOfColors.add(eColors.Color.Blue);
+        m_ArrayOfColors.add(eColors.Color.Blue);
         m_ArrayOfColors.add(eColors.Color.Red);
         m_ArrayOfColors.add(eColors.Color.Blue);
-        m_ArrayOfColors.add(eColors.Color.Green);
-        m_ArrayOfColors.add(eColors.Color.Green);
-        m_ArrayOfColors.add(eColors.Color.Red);
         m_ArrayOfColors.add(eColors.Color.Blue);
+        m_ArrayOfColors.add(eColors.Color.Red);
+        m_ArrayOfColors.add(eColors.Color.Green);
+        m_ArrayOfColors.add(eColors.Color.Green);
+        m_ArrayOfColors.add(eColors.Color.Green);
         m_ArrayOfColors.add(eColors.Color.Yellow);
+        m_ArrayOfColors.add(eColors.Color.Red);
         m_ArrayOfColors.add(eColors.Color.Green);
-        m_ArrayOfColors.add(eColors.Color.Blue);
+        m_ArrayOfColors.add(eColors.Color.Red);
         m_ArrayOfColors.add(eColors.Color.Green);
+        m_ArrayOfColors.add(eColors.Color.Red);
+        m_ArrayOfColors.add(eColors.Color.Red);
+        m_ArrayOfColors.add(eColors.Color.Red);
+        m_ArrayOfColors.add(eColors.Color.Red);
+        m_ArrayOfColors.add(eColors.Color.Red);
+        m_ArrayOfColors.add(eColors.Color.Red);
+        m_ArrayOfColors.add(eColors.Color.Red);
+//        if(i_Level == eLevel.Level.Hard)
+//        {
+//            //CreateRandomColorArray();
+//        }
+//
+//        else if(i_Level == eLevel.Level.Hard)
+//        {
+//            //CreateMediumColorArray();
+//        }
+//
+//        else
+//        {
+//            CreateEasyLevel();
+//        }
 
 
     }
@@ -99,7 +124,7 @@ public class GameManager extends AppCompatActivity
                         i++;
                     }
 
-                    numbeOfRequestTv.setText("Your Turn");
+                    //numbeOfRequestTv.setText("Your Turn");
                     v_isClickable = true;
                     DesactivateOtherTouchWhenComputerArePlaying();
                     Thread.sleep(200);
@@ -158,11 +183,11 @@ public class GameManager extends AppCompatActivity
         return result;
     }
 
-    public  void AddScore (ContentValues i_contentValues, eLevel.Level i_Level , int i_Score)
+    public  void AddScore (Context i_Context ,ContentValues i_contentValues, eLevel.Level i_Level , int i_Score)
     {
         String todayString = MakeDate();
 
-        database  = openOrCreateDatabase("dataOfScore",MODE_PRIVATE,null);
+        database  = i_Context.openOrCreateDatabase("dataOfScore",MODE_PRIVATE,null);
         database.execSQL(CREATE_TABLE_CMD);
 
         i_contentValues.put("Date", todayString);
@@ -201,6 +226,15 @@ public class GameManager extends AppCompatActivity
             {
                 v.setClickable(v_isClickable);
             }
+
+        }
+    }
+
+    public void CreateEasyLevel()
+    {
+        int num = m_random.nextInt(5);
+        if( num==1)
+        {
 
         }
     }

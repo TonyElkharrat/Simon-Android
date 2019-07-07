@@ -1,13 +1,16 @@
 package com.example.simonsay;
-import android.os.Vibrator;
+
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Context;
+import android.os.Vibrator;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
@@ -40,20 +43,20 @@ public class SimonGameActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
 
 
-      String level = getIntent().getStringArrayListExtra("level").get(0);
+        String level = getIntent().getStringArrayListExtra("level").get(0);
         if(level.equalsIgnoreCase("Easy"))
         {
-            setContentView(R.layout.game4);
+            setContentView(R.layout.easy_level);
 
         }
         else if(level.equalsIgnoreCase("Medium"))
         {
-            setContentView(R.layout.game4);
+            setContentView(R.layout.medium_level);
 
         }
         else
         {
-            setContentView(R.layout.game4);
+            setContentView(R.layout.hard_level);
 
         }
         Initialize();
@@ -65,8 +68,6 @@ public class SimonGameActivity extends AppCompatActivity implements View.OnClick
     public void Initialize()
     {
         m_numbeOfRequestTv = findViewById(R.id.numberOfRequestTV);
-        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/Pacifico.ttf");
-        m_numbeOfRequestTv.setTypeface(typeface);
         m_pannel = findViewById(R.id.mainRelativeLayout);
         ImageButton restartgame = findViewById(R.id.restartGame);
         m_sharedPreferences = getSharedPreferences("details",MODE_PRIVATE);
@@ -111,6 +112,8 @@ public class SimonGameActivity extends AppCompatActivity implements View.OnClick
 
     public void GameOver()
     {
+        m_musicService.PlayMusic("Game Over");
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View dialogview = getLayoutInflater().inflate(R.layout.game_over_dialog,null);
         dialogview.setFocusableInTouchMode(true);
@@ -135,26 +138,24 @@ public class SimonGameActivity extends AppCompatActivity implements View.OnClick
         AlertDialog  alertDialog = builder.create();
         alertDialog.getWindow().getAttributes().windowAnimations = R.style.Slide;
         alertDialog.show();
-
-        Button saveButton = dialogview.findViewById(R.id.SaveButton);
-        final EditText nameOfTheUser = dialogview.findViewById(R.id.inputOfTheUserName);
+        ImageButton saveButton = dialogview.findViewById(R.id.SaveButton);
+        final EditText nameOfTheUser = dialogview.findViewById(R.id.nickname);
         final TextView recordOfTheUserTv = dialogview.findViewById(R.id.recordTextOfTheUser);
         final SharedPreferences.Editor editor = m_sharedPreferences.edit();
         ImageButton restartGame = dialogview.findViewById(R.id.restartGame);
         ImageButton homeButton = dialogview.findViewById(R.id.HomeButton);
-        ImageView trophyicone = dialogview.findViewById(R.id.TrophyId);
-        ImageView ShareButton = dialogview.findViewById(R.id.ShareGame);
+        //ImageView trophyicone = dialogview.findViewById(R.id.TrophyId);
+        ImageView ShareButton = dialogview.findViewById(R.id.SaveButton);
         int temp =m_sharedPreferences.getInt("record_of_the_user",0);
-//        gameManager.AddScore(new ContentValues(),eLevel.Level.Easy,Integer.parseInt(numbeOfRequestTv.getText().toString())-a); ADD A SCORE IN THE DATABASE
+        m_gameManager.AddScore(SimonGameActivity.this,new ContentValues(),eLevel.Level.Easy,m_gameManager.getNumberRequest());
 
         if (m_sharedPreferences.getInt("record_of_the_user",0)< m_gameManager.getNumberRequest()-1)
         {
-            recordOfTheUserTv.setText(getString(R.string.HaveARecord)+(m_gameManager.getNumberRequest()-1));
+            recordOfTheUserTv.setText("NEW RECORD "+(m_gameManager.getNumberRequest()-1));
             editor.putInt("record_of_the_user",m_gameManager.getNumberRequest()-1);
             editor.commit();
             saveButton.setVisibility(View.VISIBLE);
             nameOfTheUser.setVisibility(View.VISIBLE);
-            trophyicone.setVisibility(View.VISIBLE);
         }
 
         else
@@ -162,7 +163,6 @@ public class SimonGameActivity extends AppCompatActivity implements View.OnClick
             recordOfTheUserTv.setText("Your score is :"+(m_gameManager.getNumberRequest()-1));
             saveButton.setVisibility(View.INVISIBLE);
             nameOfTheUser.setVisibility(View.INVISIBLE);
-            trophyicone.setVisibility(View.INVISIBLE);
         }
 
         saveButton.setOnClickListener(new View.OnClickListener()
@@ -204,10 +204,10 @@ public class SimonGameActivity extends AppCompatActivity implements View.OnClick
             public void onClick(View v)
             {
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                shareIntent.putExtra(Intent.EXTRA_TEXT,getString(R.string.SendRecord)+m_gameManager.getNumberRequest()+" !! Come to break it !");
+                shareIntent.putExtra(Intent.EXTRA_TEXT,"New Score"+m_gameManager.getNumberRequest()+" !! Come to break it !");
                 shareIntent.putExtra(Intent.EXTRA_EMAIL,new String[2]);
                 shareIntent.setType("text/html");
-                startActivity(Intent.createChooser(shareIntent,getString(R.string.SendRecord)));
+                startActivity(Intent.createChooser(shareIntent,"Send Record With?"));
             }
         });
 
@@ -233,7 +233,7 @@ public class SimonGameActivity extends AppCompatActivity implements View.OnClick
                         v_doubleBackpresssed=false;
                     }
                 },2000);
-        }          }
+            }    }
 }
 
 

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainRelativeLayout"
+    android:background="@drawable/gradiant1"
+    android:layoutDirection="ltr"
+    android:gravity="start">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="vertical"
+        android:rotation="137"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="1dp">
+            <ImageButton
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:background="@drawable/backgroundselectororange8"
+                android:layout_weight="1"
+                android:id="@+id/Orange8"
+                android:layout_margin="5dp"
+                />
+
+            <ImageButton
+                android:id="@+id/Red"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/backgroundselectorred" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="1dp">
+            <ImageButton
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:background="@drawable/backgroundselectorpink8"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:id="@+id/Pink8"/>
+            <ImageButton
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:background="@drawable/backgroundselectordarkgreen"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:id="@+id/DarkGreen"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="vertical"
+        >
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="1dp"
+            android:layout_margin="1dp">
+            <ImageButton
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/backgroundselectorgreen"
+                android:layout_weight="1"
+                android:id="@+id/Green"
+                android:layout_margin="5dp"
+                />
+
+            <ImageButton
+                android:id="@+id/Purpel"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/backgroundselectorpurpel" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="1dp">
+            <ImageButton
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/backgroundselectoryellow"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:id="@+id/Yellow"/>
+            <ImageButton
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/backgroundselectorblue"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:id="@+id/Blue"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/circle"
+        android:layout_centerInParent="true"
+        android:id="@+id/numberOfRequest"/>
+    <TextView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:text="REAPET"
+        android:textColor="#FFF"
+        android:typeface="monospace"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:background="@drawable/circle"
+        android:layout_centerInParent="true"
+        android:id="@+id/numberOfRequestTV"/>
+</RelativeLayout>

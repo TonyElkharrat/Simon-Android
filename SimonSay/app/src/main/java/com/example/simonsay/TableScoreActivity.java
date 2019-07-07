@@ -2,12 +2,14 @@ package com.example.simonsay;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -29,16 +31,14 @@ public class TableScoreActivity extends AppCompatActivity
         database = openOrCreateDatabase("dataOfScore",MODE_PRIVATE,null);
         database.execSQL(CREATE_TABLE_CMD);
 
-        adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
+        adapter = new ArrayAdapter<>(this,R.layout.list_black_text,R.id.list_content);
         tableScore.setAdapter(adapter);
 
-        ImageView trophy = findViewById(R.id.TrophyId);
-        ImageView SimonImage = findViewById(R.id.imageOfSimon);
+       // ImageView trophy = findViewById(R.id.TrophyId);
 
 
-
-        Button buttonFilter = findViewById(R.id.filterButtonId);
-        Button allScoreButton = findViewById(R.id.AllScoreButtonID);
+        ImageButton buttonFilter = findViewById(R.id.leaderIB);
+        ImageButton allScoreButton = findViewById(R.id.allScorsIB);
 
         buttonFilter.setOnClickListener(new View.OnClickListener()
         {
@@ -46,8 +46,9 @@ public class TableScoreActivity extends AppCompatActivity
             public void onClick(View v)
             {
 
-                final ArrayAdapter<String> adapterOfBestScore = new ArrayAdapter<>(TableScoreActivity.this,android.R.layout.simple_list_item_1);
-                    Cursor cursor = database.query("Record_Score", new String[] {"Date", "Level", "Score", "max(Score) as max_Score"},null, null, "Level", null, null);
+                final ArrayAdapter<String> adapterOfBestScore = new ArrayAdapter<>(TableScoreActivity.this,R.layout.list_black_text,R.id.list_content);
+
+                Cursor cursor = database.query("Record_Score", new String[] {"Date", "Level", "Score", "max(Score) as max_Score"},null, null, "Level", null, null);
 
                     MakeTable(cursor,adapterOfBestScore,"max_Score");
                     adapterOfBestScore.notifyDataSetChanged();

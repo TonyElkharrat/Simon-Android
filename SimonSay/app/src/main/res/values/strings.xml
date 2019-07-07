@@ -1,6 +1,4 @@
 <resources>
     <string name="app_name">Simon Say</string>
-    <string name="SeeMyScore">See my Score on Simon Game :</string>
-    <string name="SendRecord">Send your Record with ?</string>
-    <string name="HaveARecord">You Have A New Record!! :</string>
+    <string name="repeat">REPEAT</string>
 </resources>

@@ -3,10 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layoutDirection="ltr"
+    android:gravity="start"
+    android:background="@drawable/gradiant_list">
 
 
-    <TextView
+  <!--  <TextView
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,20 +20,44 @@
         android:background="@color/colorAccent"
         android:layout_margin="5dp"
         android:typeface="serif"
-        android:elevation="20dp"/>
-
-    <TextView
+        android:elevation="20dp"/>-->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Best Score :"
-        android:textColor="@color/Blue"
+        android:orientation="horizontal"
+        android:layout_marginTop="40dp"
+        android:gravity="center_horizontal|center_vertical"
+        >
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:id="@+id/star1"
+            android:src="@drawable/ic_star_yellow"
+            />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Best Score"
+        android:textColor="#FFF"
+        android:fontFamily="@font/fsub"
         android:gravity="center"
-        android:textSize="35sp"
-        android:layout_margin="35dp"
+        android:textSize="30sp"
+        android:layout_margin="10dp"
         android:textStyle="bold"
         android:typeface="serif"
         />
 
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:id="@+id/star2"
+            android:src="@drawable/ic_star_yellow"
+            />
+
+    </LinearLayout>
+<!--
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,11 +78,92 @@
             android:layout_margin="35dp"
             android:layout_weight="1"
             />
+    </LinearLayout>-->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:weightSum="2"
+        android:layout_marginStart="20dp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="5dp"
+       android:gravity="center_vertical|center_horizontal"
+        >
+
+
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_weight="1"
+            android:layout_height="60dp"
+            android:id="@+id/allScorsIB"
+            android:background="@drawable/shape_round2"
+            android:layout_marginStart="90dp"
+            android:src="@drawable/ic_list"
+            android:contentDescription="leader" />
+
+
+
+
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_star_whiet"
+            android:id="@+id/leaderIB"
+            android:layout_marginStart="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_round5"
+            />
+
+
+
     </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_marginStart="20dp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_vertical|center_horizontal"
+        >
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:text="All Scores"
+        android:textColor="#FFF"
+        android:textSize="15sp"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:layout_marginStart="90dp"
+
+        />
+
+
+    <TextView
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Leader Score"
+        android:textColor="#FFF"
+        android:textSize="15sp"
+        android:layout_marginStart="55dp"
+        android:layout_gravity="center"
+        />
+
+    </LinearLayout>
+
+<!--
 <LinearLayout
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:weightSum="8">
+    android:layout_marginTop="40dp"
+    android:layout_marginEnd="50dp"
+    android:layout_margin="3dp"
+    android:orientation="vertical"
+    >
     <Button
 
         android:layout_width="wrap_content"
@@ -67,7 +175,7 @@
         android:padding="5dp"
         android:textColor="#ffff"
         android:typeface="serif"
-        android:background="@drawable/shapegrey"
+        android:background="@drawable/shape_round7"
         android:elevation="10dp"/>
     <Button
 
@@ -80,15 +188,23 @@
         android:padding="5dp"
         android:textColor="#ffff"
         android:typeface="serif"
-        android:background="@drawable/shapeviolet"
+        android:background="@drawable/shape_round8"
         android:elevation="10dp"/>
-</LinearLayout>
+
+</LinearLayout>-->
+<!--
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:src="@drawable/edittext_round"
+        />-->
     <LinearLayout
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="3"
-        android:layout_margin="3dp">
+        android:layout_margin="4dp"
+        android:background="@drawable/edittext_round">
 
         <TextView
 
@@ -97,10 +213,8 @@
             android:text="   Date"
             android:textColor="#fff"
             android:layout_weight="1"
-            android:padding="5dp"
             android:layout_margin="5dp"
             android:textSize="20sp"
-            android:background="@drawable/shapered"
             android:typeface="serif"
             android:elevation="10dp"/>
 
@@ -109,11 +223,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#fff"
-            android:text="   Level"
+            android:text="        Level"
             android:layout_weight="1"
             android:layout_margin="5dp"
             android:textSize="20sp"
-            android:background="@drawable/shapeblue"
             android:typeface="serif"
             android:elevation="10dp"/>
 
@@ -121,23 +234,40 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#ffff"
-            android:text="   Score"
+            android:text="        Score"
             android:layout_margin="5dp"
-            android:background="@drawable/shapegreen"
             android:layout_weight="1"
             android:textSize="20sp"
             android:typeface="serif"
             android:elevation="10dp"/>
 
+       <!-- <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/nickname"
+            android:layout_marginTop="20dp"
+            android:drawableStart="@drawable/ic_person_black_24dp"
+            android:drawablePadding="15dp"
+            android:padding="3dp"
+            android:ems="10"
+            android:fontFamily="@font/mm"
+            android:layout_weight="1"
+            android:textColor="#FFF"
+            android:textSize="20sp"
+            android:hint="nickname"
+            android:textColorHint="#E1E6E1"
+            android:background="@drawable/edittext_round"/>-->
+
     </LinearLayout>
 
 <ListView
 
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/RecordTableId"
-    android:background="@drawable/gradientt"
-    android:layout_margin="3dp">
+    android:background="@drawable/gradiant_list"
+    android:layout_margin="5dp">
 
 </ListView>
 </LinearLayout>
