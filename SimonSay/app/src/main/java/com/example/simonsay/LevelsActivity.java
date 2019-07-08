@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class LevelsActivity extends AppCompatActivity {
 
-    final ArrayList<String> arrayTransfer = new ArrayList<>();
+     ArrayList<String> arrayTransfer;
 
 
     @Override
@@ -59,6 +59,7 @@ public class LevelsActivity extends AppCompatActivity {
 
     public void BuildLevelAndThreadTime(eLevel.Level i_Level, String i_ThreadTime)
     {
+        arrayTransfer = new ArrayList<String>();
         arrayTransfer.add(i_Level.toString());
         arrayTransfer.add("800");
         Intent SimonIntent = new Intent(LevelsActivity.this, SimonGameActivity.class);

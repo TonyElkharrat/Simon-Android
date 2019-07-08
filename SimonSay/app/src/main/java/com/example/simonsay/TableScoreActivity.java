@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -25,7 +27,11 @@ public class TableScoreActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.record_table);
-
+        ImageView star1= findViewById(R.id.star1);
+        ImageView star2= findViewById(R.id.star2);
+        Animation starScaleAnim= AnimationUtils.loadAnimation(this, R.anim.zoomout1);
+        star1.startAnimation(starScaleAnim);
+        star2.startAnimation(starScaleAnim);
         final ListView tableScore = findViewById(R.id.RecordTableId);
 
         database = openOrCreateDatabase("dataOfScore",MODE_PRIVATE,null);
@@ -88,15 +94,15 @@ public void MakeTable(Cursor cursor, ArrayAdapter<String> i_Adapater,String i_Sc
 
         if(row.contains("Easy"))
         {
-            row= row+"                       ";
+            row= row+"                    ";
         }
         else  if(row.contains("Medium"))
         {
-            row= row+"                 ";
+            row= row+"             ";
         }
         else
         {
-            row= row +"           ";
+            row= row +"                    ";
         }
        row = row + cursor.getInt(scoreindex);
         i_Adapater.add(row);
@@ -104,4 +110,5 @@ public void MakeTable(Cursor cursor, ArrayAdapter<String> i_Adapater,String i_Sc
     }
     cursor.close();
 }
+
 }

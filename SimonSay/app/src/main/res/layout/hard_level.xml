@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout android:layout_width="match_parent"
+
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/mainRelativeLayout"
     android:background="@drawable/gradiant1"
     android:layoutDirection="ltr"
     android:gravity="start">
+
+    <ImageButton
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/PauseButtonId"
+        android:background="@drawable/shape_round6"
+        android:layout_margin="80dp"
+        android:src="@drawable/ic_pause_black_24dp"
+        />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,7 +35,7 @@
                 android:layout_height="160dp"
                 android:background="@drawable/backgroundselectororange8"
                 android:layout_weight="1"
-                android:id="@+id/Orange8"
+                android:id="@+id/Orange"
                 android:layout_margin="5dp"
                 />
 
@@ -49,7 +59,7 @@
                 android:background="@drawable/backgroundselectorpink8"
                 android:layout_weight="1"
                 android:layout_margin="5dp"
-                android:id="@+id/Pink8"/>
+                android:id="@+id/Pink"/>
             <ImageButton
                 android:layout_width="160dp"
                 android:layout_height="160dp"

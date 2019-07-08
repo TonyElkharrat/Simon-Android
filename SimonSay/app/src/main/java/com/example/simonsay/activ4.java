@@ -17,7 +17,8 @@ public class activ4 extends AppCompatActivity {
     Animation fromBottom, fromRight, fromTop;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_over_dialog);
 

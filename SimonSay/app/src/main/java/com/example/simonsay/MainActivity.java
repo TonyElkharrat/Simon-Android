@@ -18,7 +18,7 @@ import android.widget.RelativeLayout;
 import com.hitomi.cmlibrary.CircleMenu;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageButton goIB;
     CoordinatorLayout menuLayotIB;
@@ -108,6 +108,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        MusicOfGameButton musicOfGame = findViewById(R.id.MusciButtonId);
+        musicOfGame.setOnClickListener(this);
 
+
+
+    }
+
+    @Override
+    public void onClick(View v)
+    {
+        if(v instanceof MusicOfGameButton)
+        {
+            ((MusicOfGameButton) v).ResumeOrPauseTheMusic();
+        }
     }
 }

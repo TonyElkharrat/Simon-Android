@@ -4,11 +4,11 @@ import android.content.Context;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 
-public class MusicService extends AppCompatActivity {
+public class MusicButtonsTouch extends AppCompatActivity {
     Context m_context;
     MediaPlayer m_mediaPlayer = new MediaPlayer();
 
-    public MusicService(Context i_context) {
+    public MusicButtonsTouch(Context i_context) {
         m_context = i_context;
     }
 
@@ -20,19 +20,31 @@ public class MusicService extends AppCompatActivity {
 
         switch (i_color) {
             case "Blue":
-                m_mediaPlayer = MediaPlayer.create(m_context, R.raw.leson1);
+                m_mediaPlayer = MediaPlayer.create(m_context, R.raw.lesson1);
                 break;
 
             case "Green":
-                m_mediaPlayer = MediaPlayer.create(m_context, R.raw.leson2);
+                m_mediaPlayer = MediaPlayer.create(m_context, R.raw.lesson5);
                 break;
 
             case "Yellow":
-                m_mediaPlayer = MediaPlayer.create(m_context, R.raw.leson3);
+                m_mediaPlayer = MediaPlayer.create(m_context, R.raw.lesson6);
                 break;
 
             case "Red":
-                m_mediaPlayer = MediaPlayer.create(m_context, R.raw.leson4);
+                m_mediaPlayer = MediaPlayer.create(m_context, R.raw.lesson7);
+                break;
+            case "Purpel":
+                m_mediaPlayer = MediaPlayer.create(m_context, R.raw.lesson8);
+                break;
+            case "DarkGreen":
+                m_mediaPlayer = MediaPlayer.create(m_context, R.raw.lesson9);
+                break;
+            case "Orange":
+                m_mediaPlayer = MediaPlayer.create(m_context, R.raw.lesson11);
+                break;
+            case "Pink":
+                m_mediaPlayer = MediaPlayer.create(m_context, R.raw.lesson12);
                 break;
 
         }

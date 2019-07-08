@@ -2,5 +2,5 @@ package com.example.simonsay;
 
 public enum eColors
 {;
-    public enum Color {Red,Blue,Yellow,Green}
+    public enum Color {Red,Blue,Yellow,Green,Orange,Pink,Purpel,DarkGreen}
 }
