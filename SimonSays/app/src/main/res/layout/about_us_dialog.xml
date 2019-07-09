@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="300dp"
+    android:layout_gravity="center"
+    android:layout_height="500dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/roolsGame"
+    android:layoutDirection="ltr"
+    android:gravity="start"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/LayoutOfInputName"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/gradiant_corners"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="40dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:layout_marginTop="50dp"
+            android:textColor="#fff"
+            android:fontFamily="@font/mm"
+            android:text="@string/roolGams"
+            android:id="@+id/rooldGame"
+            />
+
+        <TextView
+            android:layout_width="250dp"
+            android:layout_height="200dp"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textAlignment="center"
+            android:fontFamily="@font/mm"
+            android:layout_marginBottom="18sp"
+            android:lineSpacingExtra="6dp"
+            android:text="@string/info"
+            android:id="@+id/info"
+            />
+
+
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_marginTop="55dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/simon_logo"
+        android:id="@+id/SimonLogo"/>
+
+</RelativeLayout>

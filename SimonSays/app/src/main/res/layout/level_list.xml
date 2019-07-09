@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="ltr"
+    android:gravity="start"
+    android:background="@drawable/gradiant_list">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        >
+
+
+
+        <ImageButton
+
+            android:id="@+id/easyButtonId"
+            android:layout_width="290dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginStart="25dp"
+            android:textAlignment="gravity"
+            android:background="@drawable/simon_esay"
+            android:textColor="#ffff"
+             />
+
+        <ImageButton
+
+            android:id="@+id/meduimButtonID"
+            android:layout_width="290dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/medium_disable"
+            android:textColor="#ffff"
+            android:clickable="false"
+            />
+
+
+        <ImageButton
+
+            android:id="@+id/hardButtonID"
+            android:layout_width="290dp"
+            android:layout_height="160dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/hard_disable"
+            android:textColor="#ffff"
+            android:clickable="false"
+            />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        >
+    <LinearLayout
+        android:id="@+id/easyWords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        >
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:textAlignment="center"
+            android:id="@+id/easy"
+            android:layout_marginTop="100dp"
+            android:text="@string/easy"
+            android:fontFamily="@font/mm"
+            android:textSize="40sp"
+            android:textColor="#FFF"/>
+
+        <TextView
+            android:layout_width="110dp"
+            android:layout_height="40dp"
+            android:textAlignment="center"
+            android:padding="2dp"
+            android:text="@string/classic"
+            android:textSize="25sp"
+            android:textColor="#FFF"
+            android:fontFamily="@font/mm"
+
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mediumWords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        >
+
+
+        <TextView
+            android:layout_width="220dp"
+            android:layout_height="60dp"
+            android:id="@+id/mediumTV"
+            android:layout_marginTop="75dp"
+            android:text="@string/medium"
+            android:padding="3dp"
+            android:fontFamily="@font/mm"
+            android:textAlignment="center"
+            android:textSize="35sp"
+            android:textColor="@color/Grey"/>
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="80dp"
+            android:text="@string/f_good"
+            android:id="@+id/feelingGoodTV"
+            android:fontFamily="@font/mm"
+            android:textAlignment="center"
+            android:layout_marginEnd="40dp"
+            android:textColor="@color/Grey"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/hardWords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        >
+
+
+        <TextView
+            android:layout_width="170dp"
+            android:layout_height="60dp"
+            android:id="@+id/hardTV"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="55dp"
+            android:text="@string/hard"
+            android:textAlignment="center"
+            android:fontFamily="@font/mm"
+            android:padding="2dp"
+            android:textSize="37sp"
+            android:textColor="@color/Grey"/>
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="85dp"
+            android:id="@+id/feelingExpertTV"
+            android:text="@string/f_expert"
+            android:fontFamily="@font/mm"
+            android:textColor="@color/Grey"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true">
+
+
+
+        <ImageView
+            android:layout_marginTop="70dp"
+            android:layout_centerInParent="true"
+            android:layout_height="70dp"
+            android:layout_width="70dp"
+            android:id="@+id/lock_medium"
+            android:src="@drawable/ic_lock"
+
+            />
+    <ImageView
+        android:layout_marginTop="100dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/ic_lock"
+        android:id="@+id/lock_hard"
+        android:layout_below="@id/lock_medium"
+        android:layout_centerHorizontal="true"
+
+        />
+
+
+</RelativeLayout>
+</RelativeLayout>
+
+
+
+    <!--        <Button
+
+                android:id="@+id/easyButtonId"
+                android:layout_width="250dp"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/shape_round7"
+                android:elevation="10dp"
+                android:fontFamily="@font/fsub"
+                android:padding="5dp"
+                android:text="Esay"
+                android:textColor="#ffff"
+                android:typeface="serif" />
+            <Button-->
+    <!--     <Button
+
+             android:layout_width="250dp"
+             android:layout_gravity="center"
+             android:layout_height="wrap_content"
+             android:layout_margin="5dp"
+             android:text="Meduim"
+             android:fontFamily="@font/fsub"
+             android:id="@+id/meduimButtonID"
+             android:padding="5dp"
+             android:textColor="#ffff"
+             android:typeface="serif"
+             android:background="@drawable/shape_round8"
+             android:elevation="10dp"
+             android:enabled="false"
+             />
+
+
+         <Button
+
+             android:layout_width="250dp"
+             android:layout_gravity="center"
+             android:layout_height="wrap_content"
+             android:layout_margin="5dp"
+             android:text="Hard"
+             android:fontFamily="@font/fsub"
+             android:id="@+id/hardButtonID"
+             android:padding="5dp"
+             android:textColor="#ffff"
+             android:typeface="serif"
+             android:background="@drawable/shape_round9"
+             android:elevation="10dp"/>-->

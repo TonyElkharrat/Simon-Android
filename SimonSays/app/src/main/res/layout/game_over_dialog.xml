@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="300dp"
+    android:layout_gravity="center"
+    android:layout_height="500dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layoutDirection="ltr"
+    android:gravity="start"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/LayoutOfInputName"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/gradiant_corners"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="85dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:layout_marginTop="60dp"
+            android:textColor="#fff"
+            android:fontFamily="@font/mm"
+            android:text="@string/score"
+            android:id="@+id/recordTextOfTheUser"
+            />
+
+
+        <EditText
+            android:layout_width="230dp"
+            android:layout_height="match_parent"
+            android:id="@+id/nickname"
+            android:layout_marginTop="30dp"
+            android:drawableStart="@drawable/ic_person_black_24dp"
+            android:drawablePadding="15dp"
+            android:padding="3dp"
+            android:ems="10"
+            android:fontFamily="@font/mm"
+            android:textColor="#FFF"
+            android:textSize="18sp"
+            android:hint="@string/nickname"
+            android:gravity=""
+            android:textColorHint="#E1E6E1"
+            android:background="@drawable/edittext_round"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            >
+            <ImageButton
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:id="@+id/restartGame"
+                android:background="@drawable/shape_round5"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_replay_black_24dp"
+                />
+
+            <ImageButton
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_save_white_24dp"
+                android:layout_weight="1"
+                android:id="@+id/SaveButton"
+                android:layout_margin="10dp"
+                android:background="@drawable/shape_round2"
+                />
+
+
+
+            <ImageButton
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:id="@+id/HomeButton"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_home_black_24dp"
+                android:background="@drawable/shape_round3"
+                />
+        </LinearLayout>
+</LinearLayout>
+
+
+    <ImageView
+        android:layout_marginTop="55dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/rr"
+        android:id="@+id/imageOfSimon"/>
+
+</RelativeLayout>
+
+
+
+

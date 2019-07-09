@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Simon Say</string>
+    <string name="repeat">חזור</string>
+    <string name="Leader_score">הטוב ביותר</string>
+    <string name="all_scores">רשימת ניקוד</string>
+    <string name="best_score">טבלת ניקוד</string>
+    <string name="classic">רגיל</string>
+    <string name="date">תאריך</string>
+    <string name="easy">קל</string>
+    <string name="f_expert">מרגיש תותח</string>
+    <string name="f_good">מרגיש טוב</string>
+    <string name="hard">קשה</string>
+    <string name="level">שלב</string>
+    <string name="medium">בינוני</string>
+    <string name="score">ניקוד</string>
+    <string name="nickname">כינוי</string>
+    <string name="resume">התחל</string>
+    <string name="watch">צפה</string>
+    <string name="play">Play</string>
+</resources>
